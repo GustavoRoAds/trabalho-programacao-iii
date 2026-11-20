@@ -22,6 +22,11 @@ const mensagemVazia = document.getElementById("mensagemVazia");
 
 const filtroDescricao = document.getElementById("filtroDescricao");
 const tamanhoPagina = document.getElementById("tamanhoPagina");
+const dataCadastroInicial = document.getElementById("dataCadastroInicial");
+const dataCadastroFinal = document.getElementById("dataCadastroFinal");
+const dataAtualizacaoInicial = document.getElementById("dataAtualizacaoInicial");
+const dataAtualizacaoFinal = document.getElementById("dataAtualizacaoFinal");
+const btnLimparFiltros = document.getElementById("btnLimparFiltros");
 
 const totalRegistros = document.getElementById("totalRegistros");
 const paginaAtualElemento = document.getElementById("paginaAtual");
@@ -45,30 +50,49 @@ document.addEventListener("DOMContentLoaded", () => {
     filtrarLembretes();
 });
 
+// Monta os parâmetros sem restringir datas que não foram informadas.
+function montarParametrosFiltro() {
+    const params = new URLSearchParams();
+    params.set("NumeroPagina", paginaAtual);
+    params.set("TamanhoPagina", tamanhoPagina.value);
+    params.set("Descricao", filtroDescricao.value.trim());
+    params.set("Ordem", "DataCadastro");
+    params.set("Direcao", "DESC");
+
+    const datas = [
+        ["DataCadastroInicial", dataCadastroInicial.value],
+        ["DataCadastroFinal", dataCadastroFinal.value],
+        ["DataAtualizacaoInicial", dataAtualizacaoInicial.value],
+        ["DataAtualizacaoFinal", dataAtualizacaoFinal.value]
+    ];
+    datas.forEach(([nome, valor]) => {
+        if (valor) params.set(nome, valor);
+    });
+    return params;
+}
+
+function validarPeriodos() {
+    if (dataCadastroInicial.value && dataCadastroFinal.value &&
+        dataCadastroInicial.value > dataCadastroFinal.value) {
+        mostrarToast("A data inicial de cadastro deve ser anterior à final.");
+        return false;
+    }
+    if (dataAtualizacaoInicial.value && dataAtualizacaoFinal.value &&
+        dataAtualizacaoInicial.value > dataAtualizacaoFinal.value) {
+        mostrarToast("A data inicial de atualização deve ser anterior à final.");
+        return false;
+    }
+    return true;
+}
+
 // ========================================
 // GET /lembretes/filtro
 // ========================================
 async function filtrarLembretes() {
+    if (!validarPeriodos()) return;
     try {
-        const dataAtual = new Date();
-        const dataFormatada = dataAtual.getFullYear() + "-" +
-            String(dataAtual.getMonth() + 1).padStart(2, "0") + "-" +
-            String(dataAtual.getDate()).padStart(2, "0");
+        const params = montarParametrosFiltro();
 
-        const params = new URLSearchParams();
-
-        params.append("NumeroPagina", paginaAtual);
-        params.append("TamanhoPagina", tamanhoPagina.value);
-        params.append("Descricao", filtroDescricao.value);
-
-        /*TODO: implementar todos os filtros no html*/
-        params.append("Ordem", "DataCadastro");
-        params.append("Direcao", "DESC");
-        params.append("DataCadastroInicial", dataFormatada);
-        params.append("DataCadastroFinal", dataFormatada);
-        params.append("DataAtualizacaoInicial", dataFormatada);
-        params.append("DataAtualizacaoFinal", dataFormatada);
-        
         console.log('filtro-> params', params);
 
         const response = await fetch(
@@ -109,25 +133,9 @@ async function filtrarLembretes() {
 // GET /lembretes/imprimir
 // ========================================
 async function imprimirLembretes() {
+    if (!validarPeriodos()) return;
     try {
-        const dataAtual = new Date();
-        const dataFormatada = dataAtual.getFullYear() + "-" +
-            String(dataAtual.getMonth() + 1).padStart(2, "0") + "-" +
-            String(dataAtual.getDate()).padStart(2, "0");
-
-        const params = new URLSearchParams();
-
-        params.append("NumeroPagina", paginaAtual);
-        params.append("TamanhoPagina", tamanhoPagina.value);
-        params.append("Descricao", filtroDescricao.value);
-
-        /*TODO: implementar todos os filtros no html*/
-        params.append("Ordem", "DataCadastro");
-        params.append("Direcao", "DESC");
-        params.append("DataCadastroInicial", dataFormatada);
-        params.append("DataCadastroFinal", dataFormatada);
-        params.append("DataAtualizacaoInicial", dataFormatada);
-        params.append("DataAtualizacaoFinal", dataFormatada);
+        const params = montarParametrosFiltro();
 
         const response = await fetch(
             `${API_URL}/lembretes/imprimir?${params}`
@@ -451,6 +459,16 @@ function fecharFormulario() {
 // FILTRO
 // ========================================
 btnFiltrar.addEventListener("click", () => {
+    paginaAtual = 1;
+    filtrarLembretes();
+});
+
+btnLimparFiltros.addEventListener("click", () => {
+    filtroDescricao.value = "";
+    dataCadastroInicial.value = "";
+    dataCadastroFinal.value = "";
+    dataAtualizacaoInicial.value = "";
+    dataAtualizacaoFinal.value = "";
     paginaAtual = 1;
     filtrarLembretes();
 });

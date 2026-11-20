@@ -33,9 +33,9 @@ public sealed class LembreteQueryDTO
         
         public DateTime DataCadastroInicial { get; set; } = DateTime.MinValue;
         
-        public DateTime DataCadastroFinal { get; set; } = DateTime.MinValue;
+        public DateTime DataCadastroFinal { get; set; } = DateTime.MaxValue;
 
-        public DateTime DataAtualizacaoInicial { get; set; } = DateTime.MaxValue;
+        public DateTime DataAtualizacaoInicial { get; set; } = DateTime.MinValue;
 
         public DateTime DataAtualizacaoFinal { get; set; } = DateTime.MaxValue;
     }

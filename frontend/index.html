@@ -43,7 +43,7 @@
             </header>
 
             <section id="formulario" class="card form-card hidden">
-                <div class="section-heading"><span class="section-index">01</span>
+                <div class="section-heading"><span class="section-index">03</span>
                     <h2 id="tituloFormulario">Novo lembrete</h2>
                 </div>
                 <form id="formLembrete">
@@ -77,17 +77,26 @@
                             <option value="20">20</option>
                         </select>
                     </div>
-                    <div class="form-group"><label for="dataCadastroInicial">Cadastro de</label><input type="date"
-                            id="dataCadastroInicial"></div>
-                    <div class="form-group"><label for="dataCadastroFinal">Cadastro até</label><input type="date"
-                            id="dataCadastroFinal"></div>
-                    <div class="form-group"><label for="dataAtualizacaoInicial">Atualização de</label><input type="date"
-                            id="dataAtualizacaoInicial"></div>
-                    <div class="form-group"><label for="dataAtualizacaoFinal">Atualização até</label><input type="date"
-                            id="dataAtualizacaoFinal"></div>
-                    <div class="filter-actions"><button id="btnFiltrar" class="btn btn-primary"
-                            type="button">Pesquisar</button><button id="btnLimparFiltros" class="btn btn-secondary"
-                            type="button">Limpar filtros</button></div>
+                    <div class="form-group">
+                        <label for="dataCadastroInicial">Cadastro de</label>
+                        <input type="date" id="dataCadastroInicial">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataCadastroFinal">Cadastro até</label>
+                        <input type="date" id="dataCadastroFinal">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataAtualizacaoInicial">Atualização de</label>
+                        <input type="date" id="dataAtualizacaoInicial">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataAtualizacaoFinal">Atualização até</label>
+                        <input type="date" id="dataAtualizacaoFinal">
+                    </div>
+                    <div class="filter-actions">
+                        <button id="btnFiltrar" class="btn btn-primary" type="button">Pesquisar</button>
+                        <button id="btnLimparFiltros" class="btn btn-secondary" type="button">Limpar filtros</button>
+                    </div>
                 </div>
             </section>
 
@@ -102,9 +111,12 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Descrição</th>
-                                <th>Cadastro</th>
-                                <th>Atualização</th>
+                                <th><button type="button" class="sort-button" data-ordem="Descricao">Descrição <span
+                                            class="sort-indicator" aria-hidden="true"></span></button></th>
+                                <th><button type="button" class="sort-button" data-ordem="DataCadastro">Cadastro <span
+                                            class="sort-indicator" aria-hidden="true"></span></button></th>
+                                <th><button type="button" class="sort-button" data-ordem="DataAtualizacao">Atualização
+                                        <span class="sort-indicator" aria-hidden="true"></span></button></th>
                                 <th>Status</th>
                                 <th>Ações</th>
                             </tr>

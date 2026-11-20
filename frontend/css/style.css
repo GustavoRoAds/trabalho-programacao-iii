@@ -574,3 +574,44 @@ tbody tr:hover {
         align-items: stretch;
     }
 }
+
+
+/* Ordenação da listagem */
+.sort-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sort-button:hover {
+    color: var(--wine);
+    text-decoration: underline;
+}
+
+.sort-button:focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 4px;
+}
+
+.sort-indicator {
+    font-size: 13px;
+}
+
+.filter-actions {
+    grid-column: 1 / -1;
+}
+
+.toast.toast-error {
+    background: #8c2938;
+}
+
+.toast.toast-success {
+    background: #315c44;
+}

@@ -1,0 +1,16 @@
+# Visual Studio / .NET
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+
+# Sistema operacional e editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Configuracoes locais (nao publicar credenciais)
+**/appsettings.Development.json
+**/appsettings.Production.json
+**/appsettings.UMFG.json

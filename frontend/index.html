@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lembretes | Meu espaço</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="app-layout">
         <aside class="sidebar" aria-label="Painel lateral">
@@ -17,7 +19,8 @@
                 </div>
             </div>
             <div class="sidebar-section-label">ORGANIZAÇÃO</div>
-            <div class="sidebar-current" aria-current="page"><span class="nav-symbol" aria-hidden="true">▤</span> Lembretes</div>
+            <div class="sidebar-current" aria-current="page"><span class="nav-symbol" aria-hidden="true">▤</span>
+                Lembretes</div>
             <div class="sidebar-note">
                 <span class="note-line"></span>
                 <strong>Uma coisa de cada vez.</strong>
@@ -40,12 +43,15 @@
             </header>
 
             <section id="formulario" class="card form-card hidden">
-                <div class="section-heading"><span class="section-index">01</span><h2 id="tituloFormulario">Novo lembrete</h2></div>
+                <div class="section-heading"><span class="section-index">01</span>
+                    <h2 id="tituloFormulario">Novo lembrete</h2>
+                </div>
                 <form id="formLembrete">
                     <input type="hidden" id="lembreteId">
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <input type="text" id="descricao" placeholder="O que você precisa lembrar?" maxlength="500" required>
+                        <input type="text" id="descricao" placeholder="O que você precisa lembrar?" maxlength="500"
+                            required>
                     </div>
                     <div class="form-actions">
                         <button type="button" id="btnCancelar" class="btn btn-secondary">Cancelar</button>
@@ -55,7 +61,9 @@
             </section>
 
             <section class="card filter-card" aria-label="Pesquisar lembretes">
-                <div class="section-heading"><span class="section-index">01</span><h2>Encontrar lembretes</h2></div>
+                <div class="section-heading"><span class="section-index">01</span>
+                    <h2>Encontrar lembretes</h2>
+                </div>
                 <div class="filtro">
                     <div class="form-group">
                         <label for="filtroDescricao">Buscar pela descrição</label>
@@ -75,7 +83,9 @@
 
             <section class="card list-card" aria-label="Lista de lembretes">
                 <div class="table-header">
-                    <div class="section-heading"><span class="section-index">02</span><h2>Lista de lembretes</h2></div>
+                    <div class="section-heading"><span class="section-index">02</span>
+                        <h2>Lista de lembretes</h2>
+                    </div>
                     <span id="totalRegistros">0 registros</span>
                 </div>
                 <div class="table-container">
@@ -105,4 +115,5 @@
     <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
     <script src="js/app.js"></script>
 </body>
+
 </html>
